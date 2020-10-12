@@ -13,6 +13,6 @@ def send():
     email = input("Enter an email to search in the database")
     SOCKET.send(b"Q")  # Q denotes this is a query type
     SOCKET.send(bytes(len(email)))  # sending the length of email
-    SOCKET.send(bytes(email))
+    SOCKET.send(email.encode("utf-8"))
 
 send()

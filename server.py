@@ -25,7 +25,7 @@ def handle_client(conn, addr):
     if (msg_type != "Q" or not str_len):
         return
     print(f"Str_len: {str_len}")
-    str_len = int(str_len.decode("utf-8"))
+    str_len = int(str_len)
 
     msg = ""
     while (len(msg) != str_len):
