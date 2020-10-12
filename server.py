@@ -21,7 +21,9 @@ def handle_connections():
 def handle_client(conn, addr):
     """Handles each client"""
     msg_type = conn.recv(1).decode("utf-8")  # First byte contains message Type
-    str_len = int(conn.recv(1).decode("utf-8"))  # Second byte contains string length
+    str_len = conn.recv(1).decode("utf-8")  # Second byte contains string length
+    print("Str_len: {str_len}")
+    
     msg = ""
     while (len(msg) != str_len):
         msg += conn.recv().decode("utf-8")
