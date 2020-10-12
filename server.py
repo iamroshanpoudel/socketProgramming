@@ -16,7 +16,7 @@ def handle_connections():
         # in a new thread
         thread = threading.Thread(target=handle_client, args=(conn, addr))
         thread.start()  # calls the handle_client method in a new thread
-        print("[ACTIVE CONNECTIONS]: {thread.activeCount() - 1}") # Active connections = Total threads - 1
+        print("[ACTIVE CONNECTIONS]: {threading.activeCount() - 1}") # Active connections = Total threads - 1
 
 def handle_client(conn, addr):
     """Handles each client"""
