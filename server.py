@@ -1,6 +1,6 @@
 import socket, threading
 
-HOST = socket.gethostbyname(socket.gethostname() + ".local")  # Fetches the public ip address of the server
+HOST = "157.230.66.191" # Public IP of digital ocean droplet / use your server address
 PORT = 8080
 SOCKET = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # Creates a TCP socket to be used over ipv4
 SOCKET.bind((HOST, PORT))  # Binds the ip address of server with the port number
