@@ -22,11 +22,17 @@ def handle_client(conn, addr):
     """Handles each client"""
     msg_type = conn.recv(1).decode("utf-8")  # First byte contains message Type
     str_len = conn.recv(1).decode("utf-8")  # Second byte contains string length
+    if (msg_type != "Q" or not str_len):
+        return
     print("Str_len: {str_len}")
+    str_len = int(str_len)
 
     msg = ""
     while (len(msg) != str_len):
-        msg += conn.recv(BUFFER_SIZE).decode("utf-8")
+        msg_chunk = conn.recv(BUFFER_SIZE).decode("utf-8")
+        if msg_chunk == "":
+            break
+        msg += msg_chunk
         print(msg)
     conn.close()
 
