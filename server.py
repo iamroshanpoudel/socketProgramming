@@ -24,8 +24,8 @@ def handle_client(conn, addr):
     str_len = conn.recv(1).decode("utf-8")  # Second byte contains string length
     if (msg_type != "Q" or not str_len):
         return
-    print("Str_len: {str_len}")
-    str_len = int(str_len)
+    print(f"Str_len: {str_len}")
+    str_len = int(str_len.decode("utf-8"))
 
     msg = ""
     while (len(msg) != str_len):
