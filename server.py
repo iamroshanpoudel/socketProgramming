@@ -23,10 +23,10 @@ def handle_client(conn, addr):
     msg_type = conn.recv(1).decode("utf-8")  # First byte contains message Type
     str_len = conn.recv(1).decode("utf-8")  # Second byte contains string length
     print("Str_len: {str_len}")
-    
+
     msg = ""
     while (len(msg) != str_len):
-        msg += conn.recv().decode("utf-8")
+        msg += conn.recv(BUFFER_SIZE).decode("utf-8")
         print(msg)
     conn.close()
 
