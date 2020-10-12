@@ -4,7 +4,7 @@ HOST = socket.gethostbyname(socket.gethostname()) # Fetches the ip address of th
 PORT = 8080
 SOCKET = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # Creates a TCP socket to be used over ipv4
 SOCKET.bind((HOST, PORT))  # Binds the ip address of server with the port number
-MESSAGE_CAPACITY = 256 # Maximum Query/Response size in bytes
+BUFFER_SIZE = 256 # Maximum Query/Response size in bytes
 
 def handle_connections():
     """Handles different client connections"""
@@ -20,4 +20,14 @@ def handle_connections():
 
 def handle_client(conn, addr):
     """Handles each client"""
-    msg = conn.recv(MESSAGE_CAPACITY).decode()
+    msg_type = conn.recv(1).decode("utf-8")  # First byte contains message Type
+    str_len = int(conn.recv(1).decode("utf-8"))  # Second byte contains string length
+    msg = ""
+    while (len(msg) != str_len):
+        msg += conn.recv().decode("utf-8")
+        print(msg)
+    conn.close()
+
+
+handle_connections()
+    
