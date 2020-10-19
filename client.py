@@ -1,7 +1,7 @@
 import socket, sys, struct
 
 HOST = "68.183.131.122"  # Public IP Address of Digital Ocean droplet / Server running server.py
-PORT = 8080
+PORT = 8020
 
 
 def create_socket(): 
@@ -31,7 +31,7 @@ def receive_response(email):
     msg_type = msg_type.decode("utf-8")
     msg_length = int(msg_length)
     if msg_type != "R" or msg_length < 0:
-        print("Error: Server sent message using unknown protcol")
+        print("Error: Server sent message using unknown protocol")
         SOCKET.close()
         return
     msg_received = ""

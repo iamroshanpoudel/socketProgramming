@@ -1,4 +1,4 @@
-import socket, threading, struct, time
+import socket, threading, struct
 
 HOST = "68.183.131.122" # Public IP of digital ocean droplet / use your server address
 PORT = 8080
@@ -44,7 +44,7 @@ def handle_client(conn, addr):
     else:
         send_message(conn, "Error 404")
     
-    sleep(10)
+
     conn.close()
 
 def send_message(conn, msg):
