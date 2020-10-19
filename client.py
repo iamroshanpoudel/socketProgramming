@@ -1,7 +1,7 @@
 import socket, sys, struct
 
 HOST = "68.183.131.122"  # Public IP Address of Digital Ocean droplet / Server running server.py
-PORT = 8020
+PORT = 8080
 
 
 def create_socket(): 

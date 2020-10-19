@@ -35,9 +35,9 @@ def handle_client(conn, addr):
     email = ""
     for i in range(msg_length):
         email += conn.recv(1).decode("utf-8")
-    print(f"MSG Type: {msg_type}")
-    print(f"MSG Length: {msg_length}")
-    print(f"MSG: {email}")
+    # print(f"MSG Type: {msg_type}")
+    # print(f"MSG Length: {msg_length}")
+    # print(f"MSG: {email}")
 
     if email in addrbook:
         send_message(conn, addrbook[email])
