@@ -40,12 +40,19 @@ def receive_response(email):
         print(f"{email} was not found in the database!")
     else:
         print(f"{email} belongs to {msg_received}")
+    SOCKET.close()
+
     # If the user wants to search other emails?
     ask = input("Do you want to search another email?[y/n] ")
     if ask.lower() in ["y", "yes"]:
-        send_message()
+        main()
     else:
         print("Aborting program...")
 
-create_socket()
-send_message()
+
+def main():
+    create_socket()
+    send_message()
+
+if __name__ == '__main__':
+    main()
