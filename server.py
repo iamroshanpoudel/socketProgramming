@@ -1,4 +1,4 @@
-import socket, threading, struct
+import socket, threading, struct, time
 
 HOST = "68.183.131.122" # Public IP of digital ocean droplet / use your server address
 PORT = 8080
@@ -41,8 +41,10 @@ def handle_client(conn, addr):
     if email in addrbook:
         send_message(conn, addrbook[email])
     else:
-        send_message(conn, "Error: Email not found in database!")
-        conn.close()
+        send_message(conn, "Error 404")
+    
+    sleep(10)
+    conn.close()
 
 def send_message(conn, msg):
     msg_type = b"R"
