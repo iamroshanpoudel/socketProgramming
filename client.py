@@ -2,10 +2,12 @@ import socket, sys, struct
 
 HOST = "68.183.131.122"  # Public IP Address of Digital Ocean droplet / Server running server.py
 PORT = 8080
-SOCKET = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # Creates a TCP socket to be used over ipv4
+
 
 def create_socket(): 
     try:
+        global SOCKET
+        SOCKET = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # Creates a TCP socket to be used over ipv4
         SOCKET.connect((HOST, PORT))  # Connects to the server via socket
     except Exception as e:
         print(f"{e} -- Check server connection")
@@ -13,7 +15,7 @@ def create_socket():
 
 def send_message():
 
-    email = input("Enter an email to search for in the database: ").encode("utf-8")
+    email = input("\nEnter an email to search for in the database: ").encode("utf-8")
     email_length = len(email)
     msg_type = b"Q"
     packer = struct.Struct("!cb")
@@ -43,7 +45,7 @@ def receive_response(email):
     SOCKET.close()
 
     # If the user wants to search other emails?
-    ask = input("Do you want to search another email?[y/n] ")
+    ask = input("\n\nDo you want to search another email?[y/n] ")
     if ask.lower() in ["y", "yes"]:
         main()
     else:

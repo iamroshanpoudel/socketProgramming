@@ -11,13 +11,14 @@ addrbook = {"luke@gmail.com" : "Luke Skywalker", "jihoon.ryoo@sbu.edu" : "Jihoon
 def handle_connections():
     """Handles different client connections"""
     SOCKET.listen()
-    print(f"Server is listening on {HOST}")
+    print(f"[Server Started] TCP Address Server is listening on {HOST}")
     while True:  # Always keep listening
         conn, addr = SOCKET.accept()  # Accept a connection
         # After accepting a connection, handle the client connection
         # in a new thread
         thread = threading.Thread(target=handle_client, args=(conn, addr))
         thread.start()  # calls the handle_client method in a new thread
+        print(f"[New Connection] Connection with {addr} established!")
         print(f"[ACTIVE CONNECTIONS]: {threading.activeCount() - 1}") # Active connections = Total threads - 1
 
 def handle_client(conn, addr):
@@ -37,7 +38,7 @@ def handle_client(conn, addr):
     print(f"MSG Type: {msg_type}")
     print(f"MSG Length: {msg_length}")
     print(f"MSG: {email}")
-    print("MSG in dict?: ", (email in addrbook))
+
     if email in addrbook:
         send_message(conn, addrbook[email])
     else:
